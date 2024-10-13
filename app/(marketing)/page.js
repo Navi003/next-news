@@ -1,6 +1,9 @@
 import logo from "@/assets/logo.jpg";
 import Link from "next/link";
 
+
+//This is Marleting page
+
 export default function HomePage() {
   return (
     <div id="home">
