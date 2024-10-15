@@ -2,11 +2,10 @@ import { DUMMY_NEWS } from "@/dummy-news";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
-
-export default function page({ params }) {
+import { getNewsItem } from "@/lib/news";
+export default async function page({ params }) {
   const newsSlug = params.slug;
-  const newsItem = DUMMY_NEWS.find((newsItem) => newsItem.slug === newsSlug);
-
+  const newsItem = await getNewsItem(newsSlug);
   //? if news Item is undefined we will go to notfound page as we are calling thif Function
   if (!newsItem) {
     notFound();

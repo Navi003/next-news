@@ -8,17 +8,17 @@ import {
 import Link from "next/link";
 import React from "react";
 
-export default function FilteredNewsPage({ params }) {
+export default async function FilteredNewsPage({ params }) {
   const filter = params.filter;
 
   const selectedYear = filter?.[0];
   const selectedMonth = filter?.[1];
 
   let news;
-  let links = getAvailableNewsYears();
+  let links = await getAvailableNewsYears();
 
   if (selectedYear && !selectedMonth) {
-    news = getNewsForYear(selectedYear);
+    news = await getNewsForYear(selectedYear);
     links = getAvailableNewsMonths(selectedYear);
   }
 
@@ -29,7 +29,7 @@ export default function FilteredNewsPage({ params }) {
   }
 
   if (selectedYear && selectedMonth) {
-    news = getNewsForYearAndMonth(selectedYear, selectedMonth);
+    news = await getNewsForYearAndMonth(selectedYear, selectedMonth);
     newsContent = <NewsList news={news} />;
     console.log(news);
     links = [];
